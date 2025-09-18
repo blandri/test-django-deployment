@@ -1,0 +1,20 @@
+# Python virtual environment
+mysite_venv/
+env/
+
+# Django-specific files
+*.log
+*.sqlite3
+db.sqlite3
+/media/
+/static/
+
+# Local settings and secrets
+.env
+local_settings.py
+
+# PyCharm, VS Code, etc.
+.idea/
+.vscode/
+__pycache__/
+*.pyc
