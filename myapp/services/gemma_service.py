@@ -1,6 +1,6 @@
 from typing import List, Dict
 import google.generativeai as genai
-from testcase_generator import settings
+from mysite import settings
 import logging
 import json
 import re

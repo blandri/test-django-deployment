@@ -2,7 +2,7 @@ from typing import List, Dict
 from groq import Groq
 import base64
 import json
-from testcase_generator import settings
+from mysite import settings
 import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from groq._exceptions import APIStatusError

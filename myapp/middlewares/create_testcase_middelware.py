@@ -3,7 +3,7 @@ from ..services.rag_service import RAGService
 from ..services.gemma_service import GemmaServ
 from ..helpers.excel_generator import ExcelGenerator
 from ..services.groq_service import GroqApi
-from testcase_generator import settings
+from mysite import settings
 import os
 import shutil
 
