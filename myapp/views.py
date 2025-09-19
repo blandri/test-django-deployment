@@ -4,10 +4,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import *
 from pathlib import Path
-import asyncio
 from .services.supabaseFile import SupabaseClient
 from .services.rag_service import RAGService
-from .middlewares.create_testcase_middelware import CreateTestCaseMiddleWare
 from .services.gemma_service import GemmaServ
 from .helpers.excel_generator import ExcelGenerator
 
@@ -30,22 +28,6 @@ def create_document(request):
     except Exception as e:
         # print('\033[31m>>>>>>>>>>>>\033[0m', e)
         return Response({'error': 'A server error has occured'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-@api_view(['POST'])
-def create_testcase(request):
-    try:
-        pageId = request.data['srd_page_id']
-        testcase_middleqare = CreateTestCaseMiddleWare(pageId)
-        
-        res = testcase_middleqare.testcase_generation()
-
-        return Response({
-            'message': 'Testcases created successfully',
-            'data': res
-        }, status=status.HTTP_200_OK)
-    except Exception as e:
-        print(e)
-        return Response({'error': 'Server error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
 def improve_testcase(request):

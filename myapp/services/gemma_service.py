@@ -5,7 +5,6 @@ import logging
 import json
 import re
 from .groq_service import GroqApi
-from .conversation_memory_service import ConversationMemoryAgent
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +12,6 @@ class GemmaServ:
     def __init__(self):
         self.model = "gemini-1.5-flash"
         self.token = settings.GOOGLE_GENERATIVE_AI_API_KEY
-        self.memory_agent = ConversationMemoryAgent()
         genai.configure(api_key=self.token)
 
     def query_gemma_images(self, prompt: str, image_path: str ) -> str:
@@ -78,19 +76,12 @@ class GemmaServ:
             
             # Create prompt for test case generation
             prompt = self.create_test_case_prompt(srd_content_dict, context)
-            
-            # Include chat history
-            # conversation_text = self.memory_agent.get_history()
-            # full_prompt = conversation_text + f"User: {prompt}\n"
 
             # Generate response
             # ai_model = GroqApi()
             # response = ai_model.callGroq(prompt)
 
             response = self.query_gemma_batch(prompt)
-
-            # Save into memory
-            self.memory_agent.add_interaction(prompt, response)
 
             # Parse response into test cases
             test_cases = self.parse_test_cases_response(response)
