@@ -1,4 +1,8 @@
+from ..services.notion_service import NotionClient
+from ..services.rag_service import RAGService
+
 from ..helpers.excel_generator import ExcelGenerator
+
 from mysite import settings
 import os
 import shutil
@@ -6,7 +10,10 @@ import shutil
 class CreateTestCaseMiddleWare:
     def __init__(self, pageId):
         self.notionPageId = pageId
-        # self.notionClient = NotionClient(settings.NOTION_API_KEY)
+        self.notionClient = NotionClient(settings.NOTION_API_KEY)
+        self.rag = RAGService()
+        # self.gemma = GemmaServ()
+        # self.groq = GroqApi()
         self.excelGenerator = ExcelGenerator()
         self.imagesDir = "images"
         self.testcasesDir = "files"
@@ -23,8 +30,18 @@ class CreateTestCaseMiddleWare:
         # new_res = res.replace('Image_placeholder', f'''{workflowInfo}''')
 
         
-        excelFile = "path/list"
+        analysed_srd = self.rag.analyze_srd_data('jk')
+
+        similarDocuments = self.rag.retrieve_similar_content("Find similar testcases with this service", analysed_srd, 20)
+        # print('++++', similarDocuments)
+        # Gemma
+        
+
+        # groq
+        # cases = self.groq.generate_testcases(analysed_srd, similarDocuments)
+        
+        
 
         # shutil.rmtree(self.imagesDir)
 
-        return excelFile
+        return 'excelFile'
