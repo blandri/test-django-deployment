@@ -30,6 +30,21 @@ def create_document(request):
         return Response({'error': 'A server error has occured'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
+def create_testcase(request):
+    try:
+        pageId = request.data['srd_page_id']
+        
+        res = "ok"
+
+        return Response({
+            'message': 'Testcases created successfully',
+            'data': res
+        }, status=status.HTTP_200_OK)
+    except Exception as e:
+        print(e)
+        return Response({'error': 'Server error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
 def improve_testcase(request):
     try:
         user_query = request.data['prompt']
