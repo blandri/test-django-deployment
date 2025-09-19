@@ -30,6 +30,11 @@ env.read_env(str(env_file_path))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
+NOTION_API_KEY = env('NOTION_API_KEY')
+SUPABASE_API_KEY = env('SUPABASE_API_KEY')
+SUPABASE_URL = env('SUPABASE_URL')
+GOOGLE_GENERATIVE_AI_API_KEY = env('GOOGLE_GENERATIVE_AI_API_KEY')
+GROQ_API_KEY = env("GROQ_API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
