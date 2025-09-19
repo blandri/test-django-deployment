@@ -1,5 +1,4 @@
 from ..services.notion_service import NotionClient
-from ..services.rag_service import RAGService
 
 from ..helpers.excel_generator import ExcelGenerator
 
@@ -11,7 +10,7 @@ class CreateTestCaseMiddleWare:
     def __init__(self, pageId):
         self.notionPageId = pageId
         self.notionClient = NotionClient(settings.NOTION_API_KEY)
-        self.rag = RAGService()
+        # self.rag = RAGService()
         # self.gemma = GemmaServ()
         # self.groq = GroqApi()
         self.excelGenerator = ExcelGenerator()
@@ -30,10 +29,7 @@ class CreateTestCaseMiddleWare:
         # new_res = res.replace('Image_placeholder', f'''{workflowInfo}''')
 
         
-        analysed_srd = self.rag.analyze_srd_data('jk')
-
-        similarDocuments = self.rag.retrieve_similar_content("Find similar testcases with this service", analysed_srd, 20)
-        # print('++++', similarDocuments)
+        
         # Gemma
         
 
