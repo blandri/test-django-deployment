@@ -6,5 +6,5 @@ urlpatterns = [
     # path('register', views.register, name='register'),
     
     # Document management
-    path('documents', views.create_document, name='list_documents')
+    path('documents/create', views.create_document, name='create_document'),
 ]
