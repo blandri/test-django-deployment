@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from rest_framework.exceptions import *
 from pathlib import Path
 from .services.supabaseFile import SupabaseClient
-from .services.rag_service import RAGService
 from .middlewares.create_testcase_middelware import CreateTestCaseMiddleWare
 from .helpers.excel_generator import ExcelGenerator
 
@@ -18,12 +17,10 @@ def create_document(request):
     """Create a new document with embedding"""
     try:
         testcaseFile = request.data['testcases']
-        rag = RAGService()
-        res = rag.process_knowledge_base_document(testcaseFile, metadata = {'document_name': testcaseFile.name})
-
+        
         return Response({
             'message': 'Knowledge document created successfuly',
-            'data': res,
+            'data': 'ok',
         }, status=status.HTTP_201_CREATED)
     except Exception as e:
         # print('\033[31m>>>>>>>>>>>>\033[0m', e)
