@@ -1,6 +1,6 @@
 from .supabaseFile import SupabaseClient
 from .emdedding_service import EmbeddingService
-from ..helpers.excel_processor import ExcelProcessor
+# from ..helpers.excel_processor import ExcelProcessor
 from typing import List, Dict, Any, Optional
 import logging
 from pathlib import Path
@@ -13,12 +13,12 @@ class RAGService:
     def __init__(self):
         self.vector_service = SupabaseClient()
         self.embedding_service = EmbeddingService()
-        self.pdf_processor = ExcelProcessor()
+        # self.pdf_processor = ExcelProcessor()
         self.images_dir = Path('Images')
     
     def process_knowledge_base_document(self, excel_file, metadata: Dict[str, Any]) -> bool:
         try:
-            text_content = self.pdf_processor.extract_text_representation(excel_file)
+            text_content = ""
             
             if not text_content:
                 logger.error("No text content extracted from Excel")

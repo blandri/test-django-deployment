@@ -7,7 +7,6 @@ from pathlib import Path
 from .services.supabaseFile import SupabaseClient
 from .services.rag_service import RAGService
 from .services.gemma_service import GemmaServ
-from .helpers.excel_generator import ExcelGenerator
 
 # Create your views here.
 def index(request):
@@ -50,10 +49,10 @@ def improve_testcase(request):
         user_query = request.data['prompt']
         
         gemma = GemmaServ()
-        excel_generator = ExcelGenerator()
+        
 
         improved_res = gemma.improve_last_response(user_query)
-        res = excel_generator.generate_testcase_excel(improved_res, "Semen")
+        res = ""
 
         return Response(res, status=status.HTTP_200_OK)
     except Exception as e:
