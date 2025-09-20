@@ -1,5 +1,3 @@
-from ..services.notion_service import NotionClient
-
 from ..helpers.excel_generator import ExcelGenerator
 
 from mysite import settings
@@ -9,7 +7,6 @@ import shutil
 class CreateTestCaseMiddleWare:
     def __init__(self, pageId):
         self.notionPageId = pageId
-        self.notionClient = NotionClient(settings.NOTION_API_KEY)
         # self.rag = RAGService()
         # self.gemma = GemmaServ()
         # self.groq = GroqApi()
