@@ -1,4 +1,4 @@
-from ..services.notion_service import NotionClient
+from ..app.notion_service import NotionClient
 
 from ..helpers.excel_generator import ExcelGenerator
 

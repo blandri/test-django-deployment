@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import *
 from pathlib import Path
-from .services.supabaseFile import SupabaseClient
+from .app.supabaseFile import SupabaseClient
 from .middlewares.create_testcase_middelware import CreateTestCaseMiddleWare
 from .helpers.excel_generator import ExcelGenerator
 
