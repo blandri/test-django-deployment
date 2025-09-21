@@ -1,5 +1,5 @@
 from typing import List, Dict
-import google.generativeai as genai
+# import google.generativeai as genai
 from mysite import settings
 import logging
 import json
@@ -14,19 +14,19 @@ class GemmaServ:
         self.model = "gemini-1.5-flash"
         self.token = settings.GOOGLE_GENERATIVE_AI_API_KEY
         # self.memory_agent = ConversationMemoryAgent()
-        genai.configure(api_key=self.token)
+        # genai.configure(api_key=self.token)
 
     def query_gemma_images(self, prompt: str, image_path: str ) -> str:
         try:
-            model = genai.GenerativeModel(self.model)
-            with open(image_path, "rb") as f:
-              img_bytes = f.read()
+            # model = genai.GenerativeModel(self.model)
+            # with open(image_path, "rb") as f:
+            #   img_bytes = f.read()
 
-            image_part = {
-                "mime_type": "image/png",
-                "data": img_bytes,
-            }
-            response = model.generate_content([prompt, image_part])
+            # image_part = {
+            #     "mime_type": "image/png",
+            #     "data": img_bytes,
+            # }
+            response = 'k'
             return [x for x in response.text.split('\n') if x != '']
             
         except Exception as e:
@@ -34,38 +34,38 @@ class GemmaServ:
         
     def query_gemma_text(self, prompt: str) -> str:
         try:
-            model = genai.GenerativeModel(self.model)
-            response = model.generate_content(prompt, generation_config={
-            "temperature": 0.2,         # keep low for structured test cases
-            "top_p": 1.0,               # full probability mass
-            "max_output_tokens": 4096,  # adjust if test cases are large
-            },)
-            return response.text
+            # model = genai.GenerativeModel(self.model)
+            # response = model.generate_content(prompt, generation_config={
+            # "temperature": 0.2,         # keep low for structured test cases
+            # "top_p": 1.0,               # full probability mass
+            # "max_output_tokens": 4096,  # adjust if test cases are large
+            # },)
+            return 'kl'
 
         except Exception as e:
             return f"An error occurred while interacting with Gemma: {e}"
         
     def query_gemma_batch(self, prompts: List[str]) -> List[str]:
-        model = genai.GenerativeModel(self.model)
-        responses = []
+        # model = genai.GenerativeModel(self.model)
+        # responses = []
         try:
-            response = model.generate_content(prompts, generation_config={
-            "temperature": 0.2,
-            "top_p": 1.0,
-            "max_output_tokens": 80000,
-            })
+        #     response = model.generate_content(prompts, generation_config={
+        #     "temperature": 0.2,
+        #     "top_p": 1.0,
+        #     "max_output_tokens": 80000,
+        #     })
 
-            print('>>>', response.candidates)
-            regex = r"```json\s*(\[.*?\])\s*```"
-            cc = re.findall(regex, response.candidates["text"], re.DOTALL)
+            # print('>>>', response.candidates)
+            # regex = r"```json\s*(\[.*?\])\s*```"
+            # cc = re.findall(regex, response.candidates["text"], re.DOTALL)
 
-            for a in cc:
-             responses.extend(json.loads(a))
+            # for a in cc:
+            #  responses.extend(json.loads(a))
 
             # for candidate in response.candidates:
             #     responses.append(candidate.text)
 
-            return responses
+            return 'responses'
         except Exception as e:
             return f"An error occurred while interacting with Gemma: {e}"
         
@@ -103,9 +103,9 @@ class GemmaServ:
     def improve_last_response(self, query) -> str:
         """Ask Groq to improve the last AI response."""
         try:
-            last_response = self.memory_agent.get_last_ai_response()
-            if not last_response:
-                return "No previous response found to improve."
+            # last_response = self.memory_agent.get_last_ai_response()
+            # if not last_response:
+            #     return "No previous response found to improve."
 
             # improve_prompt = f"{query}. update test cases:\n{last_response}"
             # ai_model = GroqApi()
