@@ -4,7 +4,7 @@ from mysite import settings
 import logging
 import json
 import re
-from .groq_service import GroqApi
+# from .groq_service import GroqApi
 # from .conversation_memory_service import ConversationMemoryAgent
 
 logger = logging.getLogger(__name__)
@@ -107,15 +107,15 @@ class GemmaServ:
             if not last_response:
                 return "No previous response found to improve."
 
-            improve_prompt = f"{query}. update test cases:\n{last_response}"
-            ai_model = GroqApi()
-            response_text = ai_model.callGroq(improve_prompt)
+            # improve_prompt = f"{query}. update test cases:\n{last_response}"
+            # ai_model = GroqApi()
+            # response_text = ai_model.callGroq(improve_prompt)
 
-            self.memory_agent.add_interaction(query, response_text)
+            # self.memory_agent.add_interaction(query, response_text)
 
-            test_cases = self.parse_test_cases_response(response_text)
+            # test_cases = self.parse_test_cases_response(response_text)
 
-            return test_cases
+            return 'test_cases'
 
         except Exception as e:
             return f"Error improving last response: {e}"
