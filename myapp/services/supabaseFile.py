@@ -2,7 +2,7 @@ from supabase import create_client, Client
 import logging
 from typing import Dict, Any, Optional
 import uuid
-from testcase_generator import settings
+from mysite import settings
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
