@@ -6,9 +6,9 @@ from rest_framework.exceptions import *
 from pathlib import Path
 import asyncio
 from .services.supabaseFile import SupabaseClient
-# from .services.rag_service import RAGService
+from .services.rag_service import RAGService
 from .middlewares.create_testcase_middelware import CreateTestCaseMiddleWare
-# from .services.gemma_service import GemmaServ
+from .services.gemma_service import GemmaServ
 from .helpers.excel_generator import ExcelGenerator
 
 # Create your views here.

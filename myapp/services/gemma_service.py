@@ -5,7 +5,7 @@ import logging
 import json
 import re
 from .groq_service import GroqApi
-from .conversation_memory_service import ConversationMemoryAgent
+# from .conversation_memory_service import ConversationMemoryAgent
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ class GemmaServ:
     def __init__(self):
         self.model = "gemini-1.5-flash"
         self.token = settings.GOOGLE_GENERATIVE_AI_API_KEY
-        self.memory_agent = ConversationMemoryAgent()
+        # self.memory_agent = ConversationMemoryAgent()
         genai.configure(api_key=self.token)
 
     def query_gemma_images(self, prompt: str, image_path: str ) -> str:
